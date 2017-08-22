@@ -27,7 +27,7 @@ img = image.img_to_array(img)
 x1 = sci.ndimage.imread(img_path, flatten=True)
 x = sci.misc.imresize(x1, (224,224), mode='F')
 
-detection_score = np.zeros(300)
+detection_score = np.zeros(224)
 
 for k_slct in range(1,225):
     print "k=%i" % k_slct
@@ -47,7 +47,7 @@ for k_slct in range(1,225):
 
     preds = model.predict(partial_img)
     #record class probability
-    detection_score[k_slct]=preds[0,436]
+    detection_score[k_slct-1]=preds[0,436]
 
 #Plot detection curve
 plt.plot(detection_score)
