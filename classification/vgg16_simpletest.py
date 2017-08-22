@@ -37,7 +37,7 @@ for k_slct in range(1,225):
         np.random.shuffle(C)
         C = C[:k_slct]
     else:
-        C, V = interp_decomp(x1, k=k_slct, mode='column', index_set=True)
+        C, V = interp_decomp(x, k=k_slct, mode='column', index_set=True)
 
     partial_image = np.random.rand(*img.shape) * 256
     partial_image[:,:,C] = img[:,:,C]
@@ -46,7 +46,7 @@ for k_slct in range(1,225):
     partial_img = preprocess_input(partial_img)
 
     preds = model.predict(partial_img)
-    #record class probability 
+    #record class probability
     detection_score[k_slct]=preds[0,436]
 
 #Plot detection curve
